@@ -14,7 +14,7 @@ This project was developed for an example of the use of **layered development**.
 
 The project follows the DDD N-Layer Architecture
 
-![alt tag](./docs/img/ddd.jpeg)
+![alt tag](https://github.com/LucasASantos/3dDistanceCalculator/blob/master/docs/img/DDD.jpeg)
 
 * Presentation
 	* Controlles(It's responsible for controller the views and call the application services)
