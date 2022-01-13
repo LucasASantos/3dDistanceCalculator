@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation" Version="10.3.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\4-Data\FARO.Manager3d.Data\FARO.Manager3d.Data.csproj" />
+    <ProjectReference Include="..\..\3-Domain\FARO.Manager3d.Domain\FARO.Manager3d.Domain.csproj" />
+    <ProjectReference Include="..\..\2-Application\FARO.Manager3d.Application\FARO.Manager3d.Application.csproj" />
+  </ItemGroup>
+
+</Project>

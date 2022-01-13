@@ -1,0 +1,72 @@
+@model IEnumerable<FARO.Manager3d.Application.ViewModels.NominalPointViewModel>
+
+
+
+<div class="row d-flex justify-content-between">
+    <div class="col-md-6">
+        <h2>Nominal Points</h2> 
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex justify-content-end">
+            <div class="pull-left">
+                <a asp-action="Create" class="btn btn-primary">
+                    <span title="Register New" class="fas fa-plus"></span> Register New
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="text-center">
+    <div class="panel panel-default">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.X)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Y)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Z)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.X)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Y)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Z)
+                        </td>
+                        <td>
+                            <a asp-controller="Actual" asp-action="GetByNominalId" asp-route-nominalId="@item.Id" class="btn btn-primary">
+                                <span class="fa fa-dashboard"></span> Actual Points
+                            </a>
+
+                            <a asp-controller="Actual" asp-action="GetCalculatedByNominalId" asp-route-nominalId="@item.Id" class="btn btn-primary">
+                                <span class="fa fa-dashboard"></span> Actual Points with distance
+                            </a>
+                            
+                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">
+                                <span class="fas fa-edit"></span>
+                            </a>
+
+                            <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
+                                <span class="fas fa-trash-alt"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

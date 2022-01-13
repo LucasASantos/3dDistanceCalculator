@@ -1,0 +1,129 @@
+@model IEnumerable<FARO.Manager3d.Application.ViewModels.ActualPointViewModel>
+
+@{
+    var method = @ViewBag.Method;
+    var nominalPoint =
+    @ViewBag.Nominal as FARO.Manager3d.Application.ViewModels.NominalPointViewModel;
+
+}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h4>Reference nominal point:</h4>
+        <table class=" col-md-4 table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Z</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-info">@nominalPoint.X</td>
+                    <td class="table-info">@nominalPoint.Y</td>
+                    <td class="table-info">@nominalPoint.Z</td>
+                </tr>
+            </tbody>
+        </table>
+        <h6>Actual point average:</h6>
+        <table class=" col-md-6 table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Z</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@nominalPoint.XAvg</td>
+                    <td>@nominalPoint.YAvg</td>
+                    <td>@nominalPoint.ZAvg</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row d-flex justify-content-between">
+    <div class="col-md-6">
+        <h2>Actual points</h2>
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex justify-content-end">
+            <div class="pull-left">
+                <a asp-action="GetCalculatedByNominalId" asp-route-nominalId="@ViewBag.NominalId" class="btn btn-primary">
+                    <span title="Register New" class="fas fa-glasses"></span> View with Distance
+                </a>
+                <a asp-action="Create" asp-route-nominalId="@ViewBag.NominalId" class="btn btn-primary">
+                    <span title="Register New" class="fas fa-plus"></span> Register New
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <div class="panel panel-default">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.X)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Y)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Z)
+                    </th>
+                    @{
+                        if (Model.Select(c => c.Distance).Any(c => c > 0))
+                        {
+                            <th>
+                                @Html.DisplayNameFor(model => model.Distance)
+                            </th>
+                        }
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.X)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Y)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Z)
+                        </td>
+                        @{
+                            if (Model.Select(c => c.Distance).Any(c => c > 0))
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Distance)
+                                </td>
+                            }
+                        }
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" asp-route-nominalId="@ViewBag.NominalId"
+                            title="Edit" class="btn btn-warning">
+                                <span class="fas fa-edit"></span>
+                            </a>
+
+                            <a asp-action="Delete" asp-route-id="@item.Id" asp-route-nominalId="@ViewBag.NominalId"
+                            title="Delete" class="btn btn-danger">
+                                <span class="fas fa-trash-alt"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
